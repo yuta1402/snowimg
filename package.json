@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/yuta1402/snowimg#readme",
   "devDependencies": {
+    "css-loader": "^4.3.0",
     "electron": "^10.1.1",
     "electron-packager": "^15.1.0",
     "html-webpack-plugin": "^4.4.1",
