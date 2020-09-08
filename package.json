@@ -2,9 +2,15 @@
   "name": "snowimg",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron .",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch",
+    "pack-mac": "electron-packager . --asar --overwrite --platform=darwin --arch=x64",
+    "pack-win": "electron-packager . --asar --overwrite --platform=win32 --arch=x64",
+    "pack-linux": "electron-packager . --asar --overwrite --platform=linux --arch=x64",
+    "package": "npm run pack-mac && npm run pack-win && npm run pack-linux"
   },
   "repository": {
     "type": "git",
@@ -18,7 +24,7 @@
   "homepage": "https://github.com/yuta1402/snowimg#readme",
   "devDependencies": {
     "css-loader": "^4.3.0",
-    "electron": "^10.1.1",
+    "electron": "^9.3.0",
     "electron-packager": "^15.1.0",
     "html-webpack-plugin": "^4.4.1",
     "mini-css-extract-plugin": "^0.11.0",
