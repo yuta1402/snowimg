@@ -28,6 +28,8 @@ const createWindow = () => {
     forward: false,
   });
 
+  win.setHasShadow(false);
+
   // win.webContents.openDevTools();
 
   win.on("closed", () => {
