@@ -1,17 +1,20 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, screen } from "electron";
 import * as path from "path";
 import * as url from "url";
 
 let win: Electron.BrowserWindow | null;
 
 const createWindow = () => {
+  const bounds = screen.getPrimaryDisplay().bounds;
+
   win = new BrowserWindow({
-    width: 960,
-    height: 540,
+    x: bounds.x,
+    y: bounds.y,
+    width: bounds.width,
+    height: bounds.height,
     frame: false,
     transparent: true,
-    resizable: false,
-    fullscreenable: false,
+    skipTaskbar: true,
     alwaysOnTop: true,
   });
 
@@ -19,9 +22,11 @@ const createWindow = () => {
 
   win.loadFile(path.join(__dirname, "index.html"));
 
-  // win.setIgnoreMouseEvents(true, {
-  //   forward: false,
-  // });
+  // win.maximize();
+
+  win.setIgnoreMouseEvents(true, {
+    forward: false,
+  });
 
   // win.webContents.openDevTools();
 
