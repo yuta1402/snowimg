@@ -2,14 +2,6 @@ import { canvas, context } from "./canvas";
 import { FallingImage } from "./fallingImage";
 
 const initialize = () => {
-  // const canvas: HTMLCanvasElement = <HTMLCanvasElement>(
-  //   document.getElementById("canvas")
-  // );
-
-  // const context: CanvasRenderingContext2D = <CanvasRenderingContext2D>(
-  //   canvas.getContext("2d")
-  // );
-
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
@@ -19,12 +11,20 @@ const initialize = () => {
 
   context.fillStyle = "red";
 
-  const image = new FallingImage();
+  const images = new Array<FallingImage>(10);
 
-  image.initialize();
+  for (let i = 0; i < images.length; ++i) {
+    images[i] = new FallingImage();
+  }
+
+  for (let image of images) {
+    image.initialize();
+  }
 
   const update = () => {
-    image.update();
+    for (let image of images) {
+      image.update();
+    }
 
     draw();
 
@@ -34,7 +34,9 @@ const initialize = () => {
   const draw = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
-    image.draw();
+    for (let image of images) {
+      image.draw();
+    }
   };
 
   update();
