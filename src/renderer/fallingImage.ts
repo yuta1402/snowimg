@@ -11,12 +11,17 @@ export class FallingImage {
 
   public initialize() {
     this.x = canvas.width * Math.random();
-    this.y = -canvas.height * Math.random();
+    this.y = -canvas.height * Math.random() - 100;
     console.log(this.x, this.y);
   }
 
   public update() {
     this.y += 3;
+
+    if (this.y >= canvas.height) {
+      this.x = canvas.width * Math.random();
+      this.y = -100;
+    }
   }
 
   public draw() {

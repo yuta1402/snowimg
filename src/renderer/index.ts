@@ -11,7 +11,7 @@ const initialize = () => {
 
   context.fillStyle = "red";
 
-  const images = new Array<FallingImage>(10);
+  const images = new Array<FallingImage>(50);
 
   for (let i = 0; i < images.length; ++i) {
     images[i] = new FallingImage();
