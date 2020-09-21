@@ -1,8 +1,27 @@
 import { app, BrowserWindow, screen } from "electron";
+import { Tray, Menu } from "electron";
 import * as path from "path";
 import * as url from "url";
 
+let tray: Electron.Tray | null;
 let win: Electron.BrowserWindow | null;
+
+const createTray = () => {
+  tray = new Tray(path.join(__dirname, "/img/trayicon.png"));
+
+  const contextMenu = Menu.buildFromTemplate([
+    {
+      label: "終了",
+      click: () => {
+        if (win !== null) {
+          win.close();
+        }
+      },
+    },
+  ]);
+
+  tray.setContextMenu(contextMenu);
+};
 
 const createWindow = () => {
   const bounds = screen.getPrimaryDisplay().bounds;
@@ -14,7 +33,7 @@ const createWindow = () => {
     height: bounds.height,
     frame: false,
     transparent: true,
-    skipTaskbar: true,
+    skipTaskbar: false,
     alwaysOnTop: true,
   });
 
@@ -43,6 +62,7 @@ app.on("ready", () => {
     app.dock.hide();
   }
 
+  createTray();
   setTimeout(createWindow, 500);
 });
 
